@@ -1,139 +1,210 @@
-.
+#  Iris Classification API
 
-🌸 Iris Flower Classification API
-High-Performance Machine Learning API using FastAPI
- Overview
+> **A production-ready Machine Learning REST API built with FastAPI for Iris flower classification using Scikit-learn, featuring automatic API documentation (Swagger) and an interactive Streamlit frontend.**
 
-This project is a production-style Machine Learning API built with FastAPI that predicts the species of an Iris flower based on its morphological measurements.
+---
 
-The system uses a trained Scikit-learn classification model and exposes predictions through a fast, scalable REST API.
+##  Project Overview
 
-It is designed as a beginner-to-intermediate ML deployment project demonstrating end-to-end workflow:
-Data → Training → Serialization → API → Inference
+The **Iris Classification API** is a Machine Learning project that predicts the species of an Iris flower using its morphological measurements.
 
- Objective
+The project demonstrates an end-to-end ML workflow:
 
-To classify Iris flowers into one of three species:
+**Data Collection → Model Training → Model Serialization → FastAPI Deployment → Streamlit Frontend → Prediction**
 
-🌼 Setosa
-🌼 Versicolor
-🌼 Virginica
+This project was developed using **Python**, **FastAPI**, **Scikit-learn**, and **Streamlit** following REST API principles.
 
-using supervised machine learning techniques.
+---
 
- Model Information
+##  Objectives
 
-Algorithm: Logistic Regression / Decision Tree / Random Forest
-Dataset: Iris Dataset (Scikit-learn built-in)
-Problem Type: Multi-class Classification
-Input Features:
-Sepal Length (cm)
-Sepal Width (cm)
-Petal Length (cm)
-Petal Width (cm)
-Output: Predicted Iris Species
+* Build a REST API using FastAPI
+* Integrate a trained Machine Learning model
+* Validate user input using Pydantic
+* Generate automatic API documentation
+* Create an interactive frontend using Streamlit
+* Demonstrate a complete ML deployment workflow
 
- Tech Stack
+---
 
-Layer	Technology
-API Framework	FastAPI
-ML Library	Scikit-learn
-Language	Python
-Model Storage	Joblib / Pickle
-Server	Uvicorn
+##  Predicted Classes
 
- Project Structure
+* Setosa
+* Versicolor
+* Virginica
+
+---
+
+#  Tech Stack
+
+| Technology   | Purpose              |
+| ------------ | -------------------- |
+| Python       | Programming Language |
+| FastAPI      | REST API Framework   |
+| Scikit-learn | Machine Learning     |
+| Streamlit    | Frontend Interface   |
+| Joblib       | Model Serialization  |
+| NumPy        | Numerical Computing  |
+| Pydantic     | Input Validation     |
+| Uvicorn      | ASGI Server          |
+
+---
+
+#  Project Structure
+
+```text
 iris-classification-api/
 │
-├── app/
-│   ├── main.py            # FastAPI application entry point
-│   ├── schema.py          # Pydantic request validation
-│   ├── model.pkl          # Trained ML model
-│   └── utils.py          # Helper functions (optional)
-│
-├── requirements.txt       # Dependencies
-├── README.md              # Project documentation
-└── training.ipynb         # Model training notebook
-🚀 Installation & Setup
-1️⃣ Clone Repository
-git clone https://github.com/your-username/iris-classification-api.git
+├── app.py                # FastAPI Application
+├── train_model.py        # Model Training Script
+├── iris_model.pkl        # Trained ML Model
+├── streamlit_app.py      # Streamlit Fronten
+├── requirements.txt      # Dependencies
+├── README.md             # Project Documentation
+└── screenshots/          # Project Screenshots (Optional)
+```
+
+---
+
+#  Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/iris-classification-api.git
 cd iris-classification-api
-2️⃣ Create Virtual Environment
+```
+
+## Create Virtual Environment
+
+```bash
 python -m venv venv
-venv\Scripts\activate   # Windows
-3️⃣ Install Dependencies
+```
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
-▶️ Run the Application
+```
 
-Start the FastAPI server using Uvicorn:
+---
 
-uvicorn app.main:app --reload
-🌐 API Access
-Service	URL
-API Root	http://127.0.0.1:8000
-Swagger UI	http://127.0.0.1:8000/docs
-ReDoc	http://127.0.0.1:8000/redoc
-📤 API Endpoint
-🔹 Predict Iris Species
+# ▶️ Run FastAPI
 
-POST /predict
+```bash
+uvicorn app:app --reload
+```
 
-📥 Request Body
+API will be available at
+
+```
+http://127.0.0.1:8000
+```
+
+Swagger Documentation
+
+```
+http://127.0.0.1:8000/docs
+```
+
+ReDoc
+
+```
+http://127.0.0.1:8000/redoc
+```
+
+---
+
+# ▶️ Run Streamlit
+
+```bash
+streamlit run streamlit_app.py
+```
+
+---
+
+#  API Endpoint
+
+## POST /predict
+
+### Request
+
+```json
 {
   "sepal_length": 5.1,
   "sepal_width": 3.5,
   "petal_length": 1.4,
   "petal_width": 0.2
 }
-📤 Response
+```
+
+### Response
+
+```json
 {
-  "prediction": "setosa",
-  "confidence": 0.98
+  "prediction": "Setosa",
+  "confidence": 99.87
 }
-🔄 Example Usage (Python Client)
-import requests
+```
 
-url = "http://127.0.0.1:8000/predict"
+---
 
-data = {
-    "sepal_length": 6.2,
-    "sepal_width": 3.4,
-    "petal_length": 5.4,
-    "petal_width": 2.3
-}
+#  Features
 
-response = requests.post(url, json=data)
+* Fast Machine Learning Inference
+* RESTful API using FastAPI
+* Input Validation with Pydantic
+* Automatic Swagger Documentation
+* Health Check Endpoint
+* Interactive Streamlit Frontend
+* Production-style Project Structure
+* Clean & Readable Code
+* Easy Deployment
 
-print(response.json())
+---
 
- Key Features
-High-speed inference using FastAPI
- ML model integration using Scikit-learn
- Clean modular architecture
- Input validation using Pydantic
- Auto-generated API documentation (Swagger)
- Production-ready structure
- Performance
-Accuracy: ~95%+ (depends on model selection)
-Response Time: < 100ms (local environment)
-Lightweight & scalable API design
+#  Testing
 
- Testing
+The API can be tested using:
 
-You can test the API using:
+* Swagger UI
+* Postman
+* Python Requests
+* cURL
 
-Swagger UI → /docs
-Postman
-Python requests
-cURL
+---
 
- Future Enhancements
- Deploy on Render / AWS / Railway
- Add Authentication (JWT)
- Add logging & monitoring
- Try advanced models (XGBoost, SVM)
- Add frontend UI (React / Streamlit)
- Author
+#  Performance
 
-Hania Eman
-AI / Machine Learning Developer 
+* Accuracy: **95%+**
+* Lightweight REST API
+* Fast Prediction Response
+* Low Memory Usage
+
+---
+
+#  Future Improvements
+
+* Docker Support
+* JWT Authentication
+* Logging & Monitoring
+* Cloud Deployment (Render / Railway / AWS)
+* CI/CD Pipeline
+* Unit Testing
+
+---
+
+#  Author
+
+**Hania Eman**
+
+AI & Machine Learning Developer
+
+---
+
